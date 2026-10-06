@@ -10,8 +10,13 @@ prueba autorizada) y el *handoff* para ejecutar el pentester **Shannon** de Keyg
 - **`audit-methodology.md`** — cómo hacer una auditoría **completa sin ser invasiva** contra producción:
   capas, qué se audita en producción en solo lectura, y cómo montar un **staging espejo fiel** para la
   única capa invasiva (Shannon).
-- **`supabase-security-audit.sql`** — script **solo lectura** para auditar la config real de tu Supabase
-  de producción (RLS, privilegios de anon, funciones SECURITY DEFINER). No modifica nada.
+- **`supabase-security-audit.sql`** / **`supabase-security-audit-oneshot.sql`** — scripts **solo lectura**
+  para auditar la config real de tu Supabase de producción (RLS, privilegios de anon, funciones SECURITY
+  DEFINER). No modifican nada.
+- **`supabase-findings.md`** — **resultados** de la auditoría de Supabase (Security Advisor). Veredicto:
+  0 errores, datos sensibles bien aislados en un esquema `private` con RLS. Único punto a arreglar: una
+  función SECURITY DEFINER (`public.membership_batch_status()`) ejecutable por anónimos. Incluye consultas
+  de inspección y la remediación.
 - **`shannon/SETUP.md`** — cómo instalar y lanzar Shannon tú mismo, contra staging (no producción).
 - **`shannon/.env.example`** — plantilla de credenciales BYOK para Shannon.
 - **`shannon/run-shannon.sh`** — script ayudante que instala Shannon y lanza un escaneo contra una URL de
